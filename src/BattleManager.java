@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 // Controls the rules of the battle separately from the Swing interface.
 // The heroes work as a team against one monster.
@@ -217,7 +218,7 @@ public class BattleManager {
             return;
         }
 
-        GameCharacter target = findMostWoundedLivingHero();
+        GameCharacter target = getRandomLivingHero();
         if (target == null) {
             finishBattle(messages, false);
             return;
@@ -237,15 +238,21 @@ public class BattleManager {
         }
     }
 
-    // The monster targets the living hero with the lowest current HP.
-    private GameCharacter findMostWoundedLivingHero() {
-        GameCharacter target = null;
+    // The monster randomly targets an alive hero.
+    private GameCharacter getRandomLivingHero() {
+        List<GameCharacter> livingHeroes = new LinkedList<>();
         for (GameCharacter hero : characterManager.getAllCharacters()) {
-            if (hero.isAlive() && (target == null || hero.getHealth() < target.getHealth())) {
-                target = hero;
+            if (hero.isAlive()) {
+                livingHeroes.add(hero);
             }
         }
-        return target;
+        
+        if (livingHeroes.isEmpty()) {
+            return null;
+        }
+        
+        Random random = new Random();
+        return livingHeroes.get(random.nextInt(livingHeroes.size()));
     }
 
     private void finishBattle(List<String> messages, boolean teamWon) {
