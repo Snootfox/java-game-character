@@ -1,7 +1,7 @@
 public class Healer extends GameCharacter {
 
     public Healer(String name) {
-        super(name);
+        super(name, 120);
     }
 
     @Override
@@ -10,7 +10,22 @@ public class Healer extends GameCharacter {
     }
 
     @Override
+    public int getAttackDamage() {
+        return 13;
+    }
+
+    @Override
     public String specialMove() {
         return getName() + " casts Healing Wave to restore HP of all allies!";
+    }
+
+    @Override
+    public int getSpecialDamage() {
+        return 0;
+    }
+
+    @Override
+    public int getHealingPower() {
+        return 32;
     }
 }

@@ -1,66 +1,57 @@
-# Java Game Character Manager
+# Java Game Character
 
-A Java Swing application that improves the original Game Character project. 
+A small Java Swing game I made for the game character assignment. You build a team of heroes and fight **The Shadow Beast**. It is turn-based, so you click the buttons to make the heroes act.
 
-## Features
+## What it does
 
-- **Create:** Add a Warrior, Mage, Archer, or Healer.
-- **View:** Display all characters in a roster list.
-- **Search:** Find a character by name, ignoring uppercase and lowercase differences.
-- **Update:** Change a selected character's name or type.
-- **Delete:** Remove a selected character after confirming the action.
-- **Distinct abilities:** Run an attack or special move unique to each hero type.
-- **Input validation:** Reject blank names and duplicate names, and prompt users when a character selection is required.
+- Add up to 4 heroes: Warrior, Mage, Archer, and Healer.
+- Each hero has their own HP, attack damage, and special move.
+- **Team Attack** makes every living hero attack once. Then the monster attacks back.
+- Select a hero and use **Selected Hero: Special** to use their special move.
+- The Healer's special restores HP to living teammates instead of damaging the monster.
+- Heroes get points for damage dealt. The Healer gets points for HP actually restored.
+- The match ends when the monster is defeated or all heroes are knocked out.
+- Click **New Game** to reset and play again.
+- Blank or duplicate names are not allowed.
 
-## Character types and abilities
+## Heroes
 
-| Hero type | Normal attack           | Special move |
-|---|-------------------------|---|
-| Warrior | Swings a mighty sword   | Shield Bash |
-| Mage | Casts a fireball        | Lightning Storm |
-| Archer | Fires a poisonous arrow | Rain of Arrows |
-| Healer | Launches a radiant bolt | Healing Wave |
+| Hero | HP | Attack | Special |
+|---|---:|---:|---|
+| Warrior | 145 | 20 damage | Shield Bash, 34 damage |
+| Mage | 95 | 27 damage | Lightning Storm, 43 damage |
+| Archer | 110 | 23 damage | Rain of Arrows, 39 damage |
+| Healer | 120 | 13 damage | Healing Wave, heals up to 32 HP per living teammate |
 
-## Project structure
+The Shadow Beast has **380 HP** and hits for a random **18-27 damage**. It attacks the living hero with the lowest current HP. Damage and healing are capped so HP does not go past its limits.
 
-```text
-java-game-character/
-├── src/
-│   ├── GameCharacter.java
-│   ├── Warrior.java
-│   ├── Mage.java
-│   ├── Archer.java
-│   ├── Healer.java
-│   ├── CharacterManager.java
-│   └── Main.java
-├── README.md
-└── .gitignore
-```
+## Running it
 
-## Requirements
+You need a JDK and an IDE like IntelliJ IDEA or Eclipse. There are no extra libraries to install.
 
-- JDK 8 or later
-- IntelliJ IDEA, Eclipse, or another Java IDE
+In IntelliJ, open the project, make sure `src` is marked as the source folder, then run `Main.java`.
 
-No external libraries or database are required.
-
-## Run in any Java IDE
-
-1. Open the project in your preferred IDE.
-2. Ensure all seven Java files are in the same `src` folder and do not have a `package` declaration.
-3. Open `Main.java` and click **Run** next to `main()`.
-
-## Run from a terminal
-
-Run these commands from the project root:
+Or compile from the project folder in a terminal:
 
 ```bash
+mkdir out
 javac -d out src/*.java
 java -cp out Main
 ```
 
-On Windows, these commands work in PowerShell when a JDK is installed and `javac` and `java` are on `PATH`.
+Add your heroes, click **Start Battle**, then use **Team Attack** or pick a hero and use their special. The Action Log shows what happened.
 
-## Current limitation
+## Files
 
-Characters are stored in memory only. Closing the application clears the roster. Saving and loading the roster from a file could be a future improvement.
+```text
+src/
+├── GameCharacter.java
+├── Warrior.java
+├── Mage.java
+├── Archer.java
+├── Healer.java
+├── CharacterManager.java
+├── Monster.java
+├── BattleManager.java
+└── Main.java
+```
