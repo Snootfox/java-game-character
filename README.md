@@ -1,6 +1,6 @@
 # Java Game Character
 
-A small Java Swing game I made for the game character assignment. You build a team of heroes and fight **The Shadow Beast**. It is turn-based, so you click the buttons to make the heroes act.
+A small Java Swing game. You build a team of heroes and fight **The Shadow Beast**. It is turn-based, so you click the buttons to make the heroes act.
 
 ## What it does
 
